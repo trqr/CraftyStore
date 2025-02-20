@@ -9,3 +9,17 @@
     width: 100%;
     text-align: center;
   }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  a::after {
+    color: black;
+  }
+
+  img {
+    height: 500px;
+    width: auto;
+  }
