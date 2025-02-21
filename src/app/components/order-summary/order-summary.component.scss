@@ -1,0 +1,12 @@
+.order-summary-container {
+    background-color: rgb(245, 184, 184);
+    border: 2px solid black;
+    border-radius: 15px;
+    display: inline-block;
+    justify-content: flex-end;
+    grid-template-columns: repeat(8, 1fr);
+    height: auto;
+    width: 250px;
+    margin: 15px 5px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}

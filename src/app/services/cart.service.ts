@@ -35,5 +35,13 @@ export class CartService {
   getCart(){ 
     return this.cart;
   }
+
+  getCartQuantity(){
+    let quantity = 0;
+    this.cart.forEach(product => {
+      quantity += product.quantity;
+    })
+    return quantity;
+    };
 }
 
