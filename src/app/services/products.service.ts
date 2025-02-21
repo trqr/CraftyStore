@@ -45,6 +45,11 @@ export class ProductsService {
         )];
 
         getProducts(): Product[] {
-            return [...this.products];
+            return this.products;
+        }
+
+        getProduct(id: String) {
+            const matchingProduct = this.products.find(product => product.id === id);
+            return matchingProduct;
         }
 }

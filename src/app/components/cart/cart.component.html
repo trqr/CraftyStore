@@ -1,1 +1,10 @@
 <app-header></app-header>
+@for (item of cart; track item.id) {
+    <div class="product-container">
+        <img [src]="getProduct(item.id)?.imgUrl" alt="">
+        <span>{{getProduct(item.id)?.name}}</span>
+    <p>Quantité : {{ item.quantity }}
+    </p>
+    <button class="button" (click)="removeFromCart(item.id)">Rétirer du panier</button>
+    </div>
+}

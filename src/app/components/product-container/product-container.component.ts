@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { CurrencyPipe, DatePipe, DecimalPipe, PercentPipe } from '@angular/common';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-container',
@@ -9,20 +10,17 @@ import { CurrencyPipe, DatePipe, DecimalPipe, PercentPipe } from '@angular/commo
   styleUrl: './product-container.component.scss'
 })
 export class ProductContainerComponent{
-  @Input() 
-  product!: Product;
+  @Input()  product!: Product;
+
+  constructor(private CartService: CartService){}
 
   sendDate: Date = new Date();
 
-  cart: Product[] = [];
+  cart = [{}];
+
 
   addToCart(product: Product) {
-      this.cart.push(product);
+      this.cart = this.CartService.addToCart(product);
       console.log(this.cart)
-  }
-
-  removeFromCart(product: Product) {
-      let index = this.cart.indexOf(product);
-      this.cart.splice(index, 1);
   }
 }

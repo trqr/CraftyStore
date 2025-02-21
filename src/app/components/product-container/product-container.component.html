@@ -4,7 +4,10 @@
     </div>
     <h4 class="price">{{ (product.price / 100).toFixed(2) | currency : "EUR" }}</h4>
     @if (product.retailPrice != product.price) {
-        <div class="retail-price-info">Prix conseillé:  <span class="retail-price price">{{ (product.retailPrice / 100) | number: "1.0-2"  }}</span><span>€  <b>{{((product.price/product.retailPrice)-1) | percent}}</b></span></div>}
+        <div class="retail-price-info">Prix conseillé:  
+            <span class="retail-price price">{{ (product.retailPrice / 100) | number: "1.0-2"  }}</span>
+            <span>€  <b>{{((product.price/product.retailPrice)-1) | percent}}</b></span>
+        </div>}
          @else { <br>}
     <p class="product-name">{{ product.name }}</p>
     <p class="product-description">{{ product.description }}</p>
