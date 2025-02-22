@@ -30,27 +30,6 @@ export class CartComponent implements OnInit {
   }
 
   getSavings(id: String){
-    let product = this.getProduct(id);
-    let quantity = this.cart.find(item => item.id === id)?.quantity ?? 0;
-    let savings = ((product?.retailPrice ?? 0) - (product?.price ?? 0)) * quantity;
-    return savings;
-  }
-
-  getTotalOrderPrice(){
-    let total = 0;
-    this.cart.forEach((product) => {
-      let productPrice = this.ProductsService.getProduct(product.id)?.price ?? 0;
-      let quantity = product.quantity;
-      total += productPrice * quantity;
-    });
-    return total;
-  }
-  
-  getTotalSavings(){
-    let total = 0
-    this.cart.forEach((product) => {
-      total += this.getSavings(product.id);
-    });
-    return total;
+    return this.CartService.getSavings(id);
   }
 }

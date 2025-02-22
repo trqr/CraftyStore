@@ -1,4 +1,6 @@
 <div class="order-summary-container box">
-    <div class="item-number">Nombre total d'articles: {{getCartQuantity()}} </div>
-    <div>Total du panier :</div>
+    <div class="item-number order-details">Nombre total d'articles: {{getCartQuantity()}} </div>
+    <div class="order-details">Total du panier : {{getTotalOrderPrice() | number: "1.0-2"}} €</div>
+    <div class="order-details total-savings">Economie réalisée: {{getTotalSavings() | number: "1.0-2"}} €</div>
+    <button class="button purchase-button">Acheter</button>
 </div>

@@ -10,3 +10,27 @@
     margin: 15px 5px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
+
+.order-details {
+    font-size: 19px;
+    margin: 10px;
+    font-weight: 600;
+}
+
+.total-savings{
+    color: green;
+}
+
+.purchase-button {
+    width: 100px;
+    height: 50px;
+    font-size: large;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;
+    &:hover {
+        background-color: rgb(56, 173, 56);
+    }
+}

@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product.model';
+import { ProductsService } from './products.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+
+  constructor(private ProductsService: ProductsService){}
 
   private cart: { id: String, quantity: number }[] = []
 
@@ -23,7 +26,6 @@ export class CartService {
 
   removeFromCart(id: String){
     const itemIndex = this.cart.findIndex(item => item.id === id);
-    // console.log(itemIndex, this.cart);
     if (this.cart[itemIndex].quantity > 1) {
       this.cart[itemIndex].quantity--;
     } else {
@@ -42,6 +44,31 @@ export class CartService {
       quantity += product.quantity;
     })
     return quantity;
-    };
+  };
+
+  getSavings(id: String){
+    let product = this.ProductsService.getProduct(id);
+    let quantity = this.cart.find(item => item.id === id)?.quantity ?? 0;
+    let savings = ((product?.retailPrice ?? 0) - (product?.price ?? 0)) * quantity;
+    return savings;
+  }
+
+  getTotalOrderPrice(){
+    let total = 0;
+    this.cart.forEach((product) => {
+      let productPrice = this.ProductsService.getProduct(product.id)?.price ?? 0;
+      let quantity = product.quantity;
+      total += productPrice * quantity;
+    });
+    return total;
+  }
+  
+  getTotalSavings(){
+    let total = 0
+    this.cart.forEach((product) => {
+      total += this.getSavings(product.id);
+    });
+    return total;
+  }
 }
 
