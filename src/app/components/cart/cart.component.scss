@@ -1,8 +1,14 @@
 .product-container {
-    height: 450px;
+    height: auto;
+    max-height: 450px;
     justify-content: center;
     align-items: center;
+    img {
+        max-height: 225px;
+    }
 }
+
+
 
 .button{
     width: 60%;
@@ -15,4 +21,16 @@
     &:hover {
         background-color: rgb(223, 141, 141);
     }
+}
+
+.sidebars {
+    display: flex;
+}
+
+.left-sidebar {
+    width: 70%;
+}
+
+.right-sidebar {
+    margin-left: 50px;
 }

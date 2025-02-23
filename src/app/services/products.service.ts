@@ -42,6 +42,30 @@ export class ProductsService {
           "../assets/flower-4814753_1280.png",
           5.00,
           5.00
+        ),new Product(
+          "Sticker Mouton pour TShirt",
+          "Sticker mouton amusant pour personnaliser vos T-shirts. Facile à appliquer et durable.",
+          "./assets/animals-3278317_1280.png",
+          16.90,
+          21.99
+        ),new Product(
+          "Feuille d'érable séchée",
+          "Feuille d'érable séchée pour la décoration. Parfaite pour ajouter une touche naturelle et automnale à votre intérieur.",
+          "./assets/painting-8032889_1280.png",
+          4.50,
+          4.50
+        ),new Product(
+          "NotePad for Art",
+          "Superbe bloc notes pour dessinner et imaginer vos projets les plus fous.",
+          "./assets/notepad-1558811_1280.jpg",
+          8.90,
+          9.90
+        ),new Product(
+          "Pistolet à colle",
+          "Pistolet à colle pratique pour tous vos projets de bricolage et de réparation. Facile à utiliser et compatible avec différents types de bâtons de colle.",
+          "./assets/tool-159300_1280.png",
+          18.00,
+          26.99
         )];
 
         getProducts(): Product[] {

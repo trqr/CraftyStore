@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../models/product.model';
-import { CurrencyPipe, DatePipe, DecimalPipe, NgStyle, PercentPipe } from '@angular/common';
+import { CurrencyPipe, DecimalPipe, PercentPipe } from '@angular/common';
 import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-container',
-  imports: [ PercentPipe, CurrencyPipe, DecimalPipe, NgStyle],
+  imports: [ PercentPipe, CurrencyPipe, DecimalPipe],
   templateUrl: './product-container.component.html',
   styleUrl: './product-container.component.scss'
 })

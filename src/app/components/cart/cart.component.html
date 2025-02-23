@@ -1,13 +1,19 @@
 <app-header></app-header>
-<h1>Résumé de votre panier</h1>
-@for (item of cart; track item.id) {
-    <div class="product-container">
-        <img [src]="getProduct(item.id)?.imgUrl" alt="">
-        <h3>{{getProduct(item.id)?.name}}</h3>
-    <div>Prix unitaire: {{getProduct(item.id)?.price | number: "1.0-2"}} €</div>
-    <p>Quantité : {{ item.quantity }}</p>
-    <div><b>Vous économisez {{getSavings(item.id) | number: "1.0-2"}} € </b></div>
-    <button class="button" (click)="removeFromCart(item.id)">Rétirer du panier</button>
+<div class="sidebars">
+    <div class="left-sidebar">
+        <h1>Résumé de votre panier</h1>
+        @for (item of cart; track item.id) {
+            <div class="product-container">
+                    <img [src]="getProduct(item.id)?.imgUrl" alt="">
+                    <h3>{{getProduct(item.id)?.name}}</h3>
+                <div>Prix unitaire: {{getProduct(item.id)?.price | number: "1.0-2"}} €</div>
+                <p>Quantité : {{ item.quantity }}</p>
+                <div><b>Vous économisez {{getSavings(item.id) | number: "1.0-2"}} € </b></div>
+                <button class="button" (click)="removeFromCart(item.id)">Rétirer du panier</button>
+            </div>
+        }
     </div>
-}
-<app-order-summary></app-order-summary>
+    <div class="right-sidebar">
+        <app-order-summary></app-order-summary>
+    </div>
+</div>

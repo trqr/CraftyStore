@@ -1,5 +1,8 @@
 header {
     text-align: center;
+
+    border-bottom: 2px solid #333;
+    margin-bottom: 30px;
 }
 
 a {
@@ -15,3 +18,42 @@ a {
     color: #666;
     text-decoration: underline;
   }
+
+
+  .card-btn {
+    background-color: rgb(208, 209, 159);
+    height: 35px;
+    border: 2px solid black;
+    border-radius: 5px;
+    transition: all 0.3s;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card-btn svg {
+    height: 100%;
+    transition: all 0.3s;
+  }
+  
+  .card-btn:active {
+    transform: translateY(3px);
+  }
+
+  .cart-logo {
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    position: relative;
+    top: 18px;
+  }
+
+.cart-logo-quantity {
+  position: relative;
+  font-size: large;
+  bottom: 3px;
+}
+
+nav {
+  font-size: large;
+  font-weight: 600;
+}

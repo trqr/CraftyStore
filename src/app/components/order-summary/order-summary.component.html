@@ -1,6 +1,39 @@
-<div class="order-summary-container box">
-    <div class="item-number order-details">Nombre total d'articles: {{getCartQuantity()}} </div>
-    <div class="order-details">Total du panier : {{getTotalOrderPrice() | number: "1.0-2"}} €</div>
-    <div class="order-details total-savings">Economie réalisée: {{getTotalSavings() | number: "1.0-2"}} €</div>
-    <button class="button purchase-button">Acheter</button>
-</div>
+<h3>Confirmation de votre commande</h3>
+@if (getCart().length > 0){
+    <div class="delivery-container box">
+        <fieldset class="delivery-option-container">
+            <legend><b>Choisissez votre mode de livraison:</b></legend>
+            <div>
+                <input [(ngModel)]="selectedDeliveryOption"
+                type="radio" id="premium" name="delivery-options" value="5.99">
+                <label for="premium"><b>5.99 € - </b>au plus tard {{getNextDay(1) | date: "EEEE d MMMM"}}</label>
+            </div>
+            <div>
+                <input [(ngModel)]="selectedDeliveryOption"
+                type="radio" id="rapide" name="delivery-options" value="2.99">
+                <label for="rapide"><b>2.99 € - </b>au plus tard {{getNextDay(2) | date: "EEEE d MMMM"}}</label>
+            </div>
+            <div>
+                <input [(ngModel)]="selectedDeliveryOption"
+                type="radio" id="normal" name="delivery-options" value="0">
+                <label for="normal"><b>GRATUIT - </b>au plus tard {{getNextDay(5) | date: "EEEE d MMMM"}}</label>
+            </div>
+        </fieldset>
+    </div>
+    <div class="order-summary-container box">
+        <div class="item-number order-details">
+            Nombre total d'articles: {{getCartQuantity()}}
+        </div>
+        <div class="order-details">
+            Prix du panier : {{getTotalOrderPrice() + getDeliveryOption() | number: "1.0-2"}} €
+        </div>
+        <div class="order-details total-savings">
+            Economie réalisée: {{getTotalSavings() | number: "1.0-2"}} €
+        </div>
+        <button class="button purchase-button">Valider la commande</button>
+    </div>
+} @else {
+    <div class="order-summary-container">
+        Il n'y a pas d'article dans le panier!
+    </div>
+}

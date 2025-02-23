@@ -1,13 +1,14 @@
-.order-summary-container {
-    background-color: rgb(245, 184, 184);
+.box {
+    background-color: rgb(208, 209, 159);
     border: 2px solid black;
     border-radius: 15px;
     display: inline-block;
     justify-content: flex-end;
     grid-template-columns: repeat(8, 1fr);
     height: auto;
-    width: 250px;
+    width: 100%;
     margin: 15px 5px;
+    padding: 20px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -22,7 +23,7 @@
 }
 
 .purchase-button {
-    width: 100px;
+    width: 200px;
     height: 50px;
     font-size: large;
     font-weight: 600;
@@ -33,4 +34,13 @@
     &:hover {
         background-color: rgb(56, 173, 56);
     }
+}
+
+.delivery-container {
+    display: block;
+    font-size: 17px;
+}
+
+input {
+    margin: 8px;
 }

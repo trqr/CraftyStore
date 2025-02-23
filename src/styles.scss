@@ -2,6 +2,7 @@
 * {
 
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #4A4A4A;
 }
 @media (max-width: 768px) {
     .product-container {
@@ -20,16 +21,16 @@
     }
 }
 
-html, body {
+html, body, nav {
     width: 85%;
     margin: 0 auto;
 }
 body{
-    background-color: rgb(226, 203, 203);
+    background-color: #F5F5F0;
 }
 
 .product-container {
-    background-color: rgb(245, 184, 184);
+    background-color: #A8B8A4;
     border: 2px solid black;
     border-radius: 15px;
     display: inline-block;
@@ -38,6 +39,7 @@ body{
     height: 385px;
     width: 250px;
     margin: 15px 5px;
+    padding: 5px 5px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     vertical-align: top;
     img {
@@ -56,15 +58,19 @@ body{
 }
 
 .product-container:hover {
-    background-color: rgb(250, 199, 199);
+    background-color: #c5d1c2;
 }
 
 .button {
     height: 40px;
     width: 150;
     border-radius: 10px;
-    background-color: rgb(224, 189, 189);
+    background-color: #D8B499;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover {
+    background-color: #F1D15A;
 }
 
 .button:active {
