@@ -1,4 +1,7 @@
 <app-header></app-header>
+<h1>Nos Articles</h1>
+<div class="products-container">
 @for (product of products; track product.name) {
   <app-product-container [product]="product"></app-product-container>
 }
+</div>

@@ -9,7 +9,9 @@ export class CartService {
 
   constructor(private ProductsService: ProductsService){}
 
-  private cart: { id: String, quantity: number }[] = []
+  private cart: { id: String, quantity: number}[] = []
+
+  deliveryOption : number = 0;
 
   addToCart(product: Product){
     const alreadyInCart = this.cart.find(item => item.id === product.id);
@@ -69,6 +71,15 @@ export class CartService {
       total += this.getSavings(product.id);
     });
     return total;
+  }
+
+  setDeliveryOption(deliveryCost: String){
+    this.deliveryOption = +deliveryCost;
+    console.log(this.deliveryOption)
+  }
+
+  getDeliveryOption(){
+    return this.deliveryOption;
   }
 }
 

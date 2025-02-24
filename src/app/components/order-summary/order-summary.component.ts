@@ -2,21 +2,22 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart.service';
 import { DatePipe, DecimalPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-order-summary',
-  imports: [DecimalPipe, DatePipe, FormsModule],
+  imports: [DecimalPipe, DatePipe, FormsModule, RouterLink],
   templateUrl: './order-summary.component.html',
   styleUrl: './order-summary.component.scss'
 })
 export class OrderSummaryComponent {
 constructor(private CartService: CartService){}
 
-  selectedDeliveryOption: string = "0";
+   selectedDeliveryOption: String = "0";
 
-  getDeliveryOption(){
-    return +this.selectedDeliveryOption;
-  }
+   setDeliveryOption(selectedDeliveryOption: String){
+    this.CartService.setDeliveryOption(selectedDeliveryOption);
+   }
 
   currentDate : Date = new Date;
 

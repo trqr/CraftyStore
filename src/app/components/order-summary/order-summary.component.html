@@ -25,12 +25,12 @@
             Nombre total d'articles: {{getCartQuantity()}}
         </div>
         <div class="order-details">
-            Prix du panier : {{getTotalOrderPrice() + getDeliveryOption() | number: "1.0-2"}} €
+            Prix du panier : {{getTotalOrderPrice() + +selectedDeliveryOption | number: "1.0-2"}} €
         </div>
         <div class="order-details total-savings">
             Economie réalisée: {{getTotalSavings() | number: "1.0-2"}} €
         </div>
-        <button class="button purchase-button">Valider la commande</button>
+        <button routerLink="/order" class="button purchase-button" (click)="setDeliveryOption(selectedDeliveryOption)">Valider la commande</button>
     </div>
 } @else {
     <div class="order-summary-container">
