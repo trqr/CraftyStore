@@ -10,31 +10,50 @@
     @for (item of cart; track item.id) {
 
             <tr>
-                <td>{{ getProduct(item.id)?.name }}</td>
+                <td>{{ getProduct(item.id)?.name}}</td>
                 <td>{{ item.quantity }}</td>
-                <td>{{ (getProduct(item.id)?.price ?? 0) * (item?.quantity ?? 0)}} €</td>
+                <td>{{ ((getProduct(item.id)?.price ?? 0) * (item?.quantity ?? 0)) | number: "1.0-2" }} €</td>
             </tr>
         }
         <tr>
             <td>Livraison</td>
             <td></td>
-            <td>{{getDeliveryOption()}} €</td>
+            <td>{{getDeliveryOption()  | number: "1.0-2" }} €</td>
         </tr>
         <tr>
             <td></td>
             <td>Total: </td>
-            <td>{{getTotalOrderPrice() + getDeliveryOption()}} €</td>
+            <td>{{(getTotalOrderPrice() + getDeliveryOption()) | number: "1.0-2" }} €</td>
         </tr>
         </table>
  
 </div>
+
+<h1>Veuillez renseigner vos informations</h1>
 <div class="box">
-    <fieldset>
-        <legend>Renseignez vos informations:</legend>
-            <label for="userEmail">Votre email</label>
-            <input type="email" id="userEmail" name="userEmail">
-            <label for="userAddress">Votre adresse</label>
-            <input type="textarea" id="userAddress" name="userAddress">
-    </fieldset>
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Votre Email</mat-label>
+          <input matInput placeholder="Ex. example@gmail.com" required [(ngModel)]="userEmail" name="userEmail">> 
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <mat-label>Votre adresse</mat-label>
+          <textarea matInput placeholder="Ex. 12 Bd Jean Jaures 37000 Tours" required [(ngModel)]="userAddress" name="userAddress"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Moyen de paiement</mat-label>
+            <select matNativeControl required [(ngModel)]="paymentMethod" name="paymentMethod">
+              <option value="cb">Carte Bancaire</option>
+              <option value="paypal">Paypal</option>
+              <option value="metamask">Metamask</option>
+            </select>
+          </mat-form-field>
+
+          <button class="submit button" (click)="createOrder(userEmail, userAddress)">Payer ma commande</button>
+      </form>
 
 </div>
+
+<button routerLink="/orderslist" class="submit button" (click)="getOrders()">Show me orders</button>

@@ -76,4 +76,15 @@ export class ProductsService {
             const matchingProduct = this.products.find(product => product.id === id);
             return matchingProduct;
         }
+
+        // saveProductsToLocalStorage() {
+        //   localStorage.setItem('products', JSON.stringify(this.products));
+        // }
+      
+        // loadProductsFromLocalStorage() {
+        //   const products = localStorage.getItem('products');
+        //   if (products) {
+        //     this.products = JSON.parse(products);
+        //   }
+        // }
 }

@@ -75,11 +75,22 @@ export class CartService {
 
   setDeliveryOption(deliveryCost: String){
     this.deliveryOption = +deliveryCost;
-    console.log(this.deliveryOption)
   }
 
   getDeliveryOption(){
     return this.deliveryOption;
+  }
+
+  
+  saveCartToLocalStorage() {
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
+
+  loadCartFromLocalStorage() {
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      this.cart = JSON.parse(cart);
+    }
   }
 }
 

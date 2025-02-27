@@ -3,6 +3,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    
   }
   
   .landing-links {
@@ -19,6 +20,9 @@
     color: black;
   }
 
+  header {
+    z-index: 5;
+  }
 
 
   .button {
@@ -29,13 +33,9 @@
     border-radius: 10px;
     background-color: rgb(224, 189, 189);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1;
 }
 
-
 img {
-  width: 800px;
-  height: fit-content;
-  display: flex;
-  margin: 0 auto;
-  z-index: -1;
+  height: 550px;
 }
