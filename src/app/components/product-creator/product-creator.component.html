@@ -1,0 +1,48 @@
+<app-header></app-header>
+<div class="page-div">
+  <div class="box">
+    <form (ngSubmit)="addProduct()" #dataForm="ngForm">
+      <fieldset>
+          <legend>Renseignez le produit</legend>
+          <mat-form-field class="input-product-creator">
+          <mat-label>Nom du produit</mat-label>
+          <input matInput type="text" name="name" [(ngModel)]="productData.name" placeholder="Ex: Pinceaux..." required />
+          </mat-form-field>
+          <mat-form-field class="input-product-creator">
+          <input matInput type="text" name="description" [(ngModel)]="productData.description" placeholder="Description" required />
+        </mat-form-field>
+          <mat-form-field class="input-product-creator">
+          <input matInput type="text" name="imgUrl" [(ngModel)]="productData.imgUrl" placeholder="Lien de l'image" required />
+        </mat-form-field>
+          <mat-form-field class="input-product-creator">
+          <input matInput type="number" name="price" [(ngModel)]="productData.price" placeholder="Prix" required />
+        </mat-form-field>
+          <mat-form-field class="input-product-creator">
+          <input matInput type="number" name="retailPrice" [(ngModel)]="productData.retailPrice" placeholder="Prix de référence" required />
+        </mat-form-field>
+        <br>
+          <button class="button" type="submit" [disabled]="!dataForm.valid">Appliquer</button>
+      </fieldset>
+    </form>
+  </div>
+
+  <form class="box" (ngSubmit)="deleteProduct(productId)" #dataForm="ngForm">
+    <fieldset>
+      <legend>ID du produit à supprimer</legend>
+      <mat-form-field class="input-product-creator">
+        <input matInput type="number" name="name" [(ngModel)]="productId" placeholder="Id du produit" required />
+      </mat-form-field>
+      <br>
+      <button class="button" (click)="togglePopup()">Supprimer</button>
+   
+    <div class="box popup" [ngClass]="{ 'popup-toggle': isPopupVisible}">
+      <h2 class="popup-message-confirmation">Vous êtes sur le point de supprimer un produit. Êtes-vous certain?</h2>
+      <button class="button popup-message-confirmation" type="submit" [disabled]="!dataForm.valid" (click)="togglePopup()">Oui, supprimer</button>
+      <button class="button popup-message-confirmation" (click)="togglePopup()">Non</button>
+    </div>
+  </fieldset>
+  </form>
+</div>
+
+
+

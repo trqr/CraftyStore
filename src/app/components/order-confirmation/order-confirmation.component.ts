@@ -30,7 +30,7 @@ export class OrderConfirmationComponent {
     this.cart = this.CartService.getCart();
   }
 
-  getProduct(id: string){
+  getProduct(id: number){
     return this.ProductsService.getProduct(id);
   }
 

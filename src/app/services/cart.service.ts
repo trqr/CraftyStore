@@ -9,7 +9,7 @@ export class CartService {
 
   constructor(private ProductsService: ProductsService){}
 
-  private cart: { id: String, quantity: number}[] = []
+  private cart: { id: number, quantity: number}[] = []
 
   deliveryOption : number = 0;
 
@@ -26,7 +26,7 @@ export class CartService {
     return this.cart;
   }
 
-  removeFromCart(id: String){
+  removeFromCart(id: number){
     const itemIndex = this.cart.findIndex(item => item.id === id);
     if (this.cart[itemIndex].quantity > 1) {
       this.cart[itemIndex].quantity--;
@@ -48,7 +48,7 @@ export class CartService {
     return quantity;
   };
 
-  getSavings(id: String){
+  getSavings(id: number){
     let product = this.ProductsService.getProduct(id);
     let quantity = this.cart.find(item => item.id === id)?.quantity ?? 0;
     let savings = ((product?.retailPrice ?? 0) - (product?.price ?? 0)) * quantity;
@@ -79,18 +79,6 @@ export class CartService {
 
   getDeliveryOption(){
     return this.deliveryOption;
-  }
-
-  
-  saveCartToLocalStorage() {
-    localStorage.setItem('cart', JSON.stringify(this.cart));
-  }
-
-  loadCartFromLocalStorage() {
-    const cart = localStorage.getItem('cart');
-    if (cart) {
-      this.cart = JSON.parse(cart);
-    }
   }
 }
 

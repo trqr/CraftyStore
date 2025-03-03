@@ -5,17 +5,20 @@ import { ProductsService } from '../../services/products.service';
 import { HeaderComponent } from "../header/header.component";
 
 @Component({
+  standalone: true,
   selector: 'app-product-list',
-  imports: [ProductContainerComponent, HeaderComponent],
+  imports: [ProductContainerComponent, HeaderComponent ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
 export class ProductListComponent implements OnInit {
-  products : Product[] = [];
+  products! : Product[];
 
-  constructor(private productsService: ProductsService){}
+  constructor(private ProductsService: ProductsService){}
   
   ngOnInit(): void {
-    this.products = this.productsService.getProducts();
+    this.ProductsService.getProducts().subscribe(products => {
+      this.products = products;
+    });
   }
 }

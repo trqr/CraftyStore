@@ -21,6 +21,5 @@ export class ProductContainerComponent{
 
   addToCart(product: Product) {
       this.cart = this.CartService.addToCart(product);
-      this.CartService.saveCartToLocalStorage();
   }
 }

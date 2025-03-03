@@ -14,27 +14,28 @@ import { Product } from '../../models/product.model';
 })
 export class CartComponent implements OnInit {
 
+
   constructor(private CartService: CartService, private ProductsService: ProductsService){}
 
-  cart: { id: String, quantity: number }[] = []
-  products : Product[] = [];
+  products!: Product[];
+  cart: { id: number, quantity: number }[] = []
 
   ngOnInit(): void {
-    this.CartService.loadCartFromLocalStorage();
+    this.ProductsService.getProducts().subscribe(products => {
+      this.products = products;
+    });
     this.cart = this.CartService.getCart();
-    this.products = this.ProductsService.getProducts();
   }
 
-  getProduct(id: String){
-    return this.ProductsService.getProduct(id);
+  getProduct(id: number): Product{
+    return this.ProductsService.getProduct(id)!;
   }
 
-  removeFromCart(id: String){
+  removeFromCart(id: number){
     this.cart = this.CartService.removeFromCart(id);
-    this.CartService.saveCartToLocalStorage();
   }
 
-  getSavings(id: String){
+  getSavings(id: number){
     return this.CartService.getSavings(id);
   }
 
