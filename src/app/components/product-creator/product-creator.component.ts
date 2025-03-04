@@ -5,7 +5,8 @@ import { ProductsService } from '../../services/products.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HeaderComponent } from '../header/header.component';
-import { NgClass, NgStyle } from '@angular/common';
+import { NgClass } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-creator',
@@ -15,7 +16,7 @@ import { NgClass, NgStyle } from '@angular/common';
 })
 export class ProductCreatorComponent {
 
-  constructor(private http: HttpClient, private productsService: ProductsService) {}
+  constructor(private http: HttpClient, private productsService: ProductsService, private toastr: ToastrService) {}
 
   productData = {
     name: '',
@@ -39,10 +40,17 @@ export class ProductCreatorComponent {
   deleteProduct(id: number){
     this.http.delete("http://localhost:8080/delete-product-data", {params: { id: id} }).subscribe(response => {
       console.log('Réponse du serveur:', response);
+      this.showSuccess();
     });
+    this.isPopupVisible = !this.isPopupVisible;
   }
 
-  togglePopup(){
+  togglePopup(event: Event){
+    event.preventDefault();
     this.isPopupVisible = !this.isPopupVisible;
+  }
+
+  showSuccess() {
+    this.toastr.success('Article supprimé.', 'Opération réussie!');
   }
 }

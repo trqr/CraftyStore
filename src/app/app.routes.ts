@@ -14,3 +14,4 @@ export const routes: Routes = [
     { path: 'orderslist', component: OrdersListComponent},
     { path: 'product-creator', component: ProductCreatorComponent}
 ];
+    
