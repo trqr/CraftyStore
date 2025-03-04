@@ -31,16 +31,23 @@ export class ProductCreatorComponent {
   isPopupVisible: boolean = false;
 
   addProduct(){
-    this.http.post('http://localhost:8080/submit-product-data', this.productData)
+    this.http.post('http://localhost:8080/submit-product-data', this.productData, { responseType: 'text' })
     .subscribe(response => {
       console.log('Réponse du serveur:', response);
+      this.showSuccess('Produit ajouté');
+        }, error => {
+      console.error(`Erreur lors de l'ajout du produit:`, error);
+      this.showError(`Erreur lors de l'ajout du produit`);
     });
   }
 
   deleteProduct(id: number){
-    this.http.delete("http://localhost:8080/delete-product-data", {params: { id: id} }).subscribe(response => {
+    this.http.delete("http://localhost:8080/delete-product-data", {params: { id: id}, responseType: 'text', observe: 'body' }).subscribe(response => {
       console.log('Réponse du serveur:', response);
-      this.showSuccess();
+      this.showSuccess('Produit effacé');
+        }, error => {
+      console.error('Erreur lors de la suppression du produit:', error);
+      this.showError('Erreur lors de la suppression du produit');
     });
     this.isPopupVisible = !this.isPopupVisible;
   }
@@ -50,7 +57,11 @@ export class ProductCreatorComponent {
     this.isPopupVisible = !this.isPopupVisible;
   }
 
-  showSuccess() {
-    this.toastr.success('Article supprimé.', 'Opération réussie!');
+  showSuccess(message: string) {
+    this.toastr.success(message, 'Opération réussie!');
+  }
+
+  showError(message: string){
+    this.toastr.error(message, `L'opération a échouée`)
   }
 }
