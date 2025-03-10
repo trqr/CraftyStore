@@ -4,5 +4,5 @@ export interface Product {
      imgUrl: String;
      price: number;
      retailPrice: number;
-     id: number;
+     id?: number;
 }

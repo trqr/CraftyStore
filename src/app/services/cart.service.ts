@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product.model';
 import { ProductsService } from './products.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  constructor(private ProductsService: ProductsService){}
+  constructor(private ProductsService: ProductsService, private toastrService: ToastrService){}
 
   private cart: { id: number, quantity: number}[] = []
 
@@ -19,10 +20,11 @@ export class CartService {
       alreadyInCart.quantity++;
     } else {
       this.cart.push({
-        id: product.id,
+        id: product.id!,
         quantity: 1
       });
     };
+    this.toastrService.success('Produit ajouté au panier', 'Opération réussie')
     return this.cart;
   }
 

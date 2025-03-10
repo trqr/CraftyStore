@@ -9,6 +9,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { OrdersService } from '../../services/orders.service';
 import { Order } from '../../models/order.model';
 import { RouterLink } from '@angular/router';
+import { CustomerService } from '../../services/customer.service';
+import { Customer } from '../../models/customer.model';
 
 @Component({
   selector: 'app-order-confirmation',
@@ -21,14 +23,17 @@ export class OrderConfirmationComponent {
   cart: any;
   orders!: Order[]
 
+  userName!: String;
   userEmail!: String;
   userAddress!: String;
   paymentMethod: String = "";
   
 
-  constructor(private ProductsService: ProductsService, private CartService: CartService, private OrdersService: OrdersService){
+  constructor(private ProductsService: ProductsService, private CartService: CartService, private OrdersService: OrdersService, private customerService: CustomerService){
     this.cart = this.CartService.getCart();
   }
+
+
 
   getProduct(id: number){
     return this.ProductsService.getProduct(id);
@@ -42,8 +47,14 @@ export class OrderConfirmationComponent {
     return this.CartService.getDeliveryOption();
   }
 
-  createOrder(customerMail: String, deliveryAddress: String){
-    this.OrdersService.createOrder(customerMail, deliveryAddress); 
+  async addCustomer(){
+    const newCustomer = new Customer(this.userName, this.userEmail, this.userAddress, this.paymentMethod, 0);
+    this.customerService.addCustomer(newCustomer);
+  } 
+
+  createOrder(){
+    console.log(this.customerService.newUserId);
+    this.OrdersService.createOrder(this.customerService.newUserId); 
   }
 
   getOrders(){

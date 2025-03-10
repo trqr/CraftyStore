@@ -1,4 +1,36 @@
 <app-header></app-header>
+<h1>Veuillez renseigner vos informations</h1>
+<div class="box">
+    <form class="user-info-form">
+        <mat-form-field class="example-full-width">
+            <mat-label>Votre nom</mat-label>
+            <input matInput placeholder="Ex. Jean Daniel" required [(ngModel)]="userName" name="userName"> 
+          </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Votre Email</mat-label>
+          <input matInput placeholder="Ex. example@gmail.com" required [(ngModel)]="userEmail" name="userEmail"> 
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <mat-label>Votre adresse</mat-label>
+          <textarea matInput placeholder="Ex. 12 Bd Jean Jaures 37000 Tours" required [(ngModel)]="userAddress" name="userAddress"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Moyen de paiement</mat-label>
+            <select matNativeControl required [(ngModel)]="paymentMethod" name="paymentMethod">
+              <option value="cb">Carte Bancaire</option>
+              <option value="paypal">Paypal</option>
+              <option value="metamask">Metamask</option>
+            </select>
+          </mat-form-field>
+
+          <button class="submit button" (click)="addCustomer()" >Valider mes informations</button>
+      </form>
+
+</div>
+
 <h1>Récapitulatif de votre commande</h1>
 <div class="order-recap box">
     <table>
@@ -26,34 +58,9 @@
             <td>{{(getTotalOrderPrice() + getDeliveryOption()) | number: "1.0-2" }} €</td>
         </tr>
         </table>
- 
+ <button class="button" (click)="createOrder()">Confirmer la commande et passer au paiement</button>
 </div>
 
-<h1>Veuillez renseigner vos informations</h1>
-<div class="box">
-    <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <mat-label>Votre Email</mat-label>
-          <input matInput placeholder="Ex. example@gmail.com" required [(ngModel)]="userEmail" name="userEmail">> 
-        </mat-form-field>
-      
-        <mat-form-field class="example-full-width">
-          <mat-label>Votre adresse</mat-label>
-          <textarea matInput placeholder="Ex. 12 Bd Jean Jaures 37000 Tours" required [(ngModel)]="userAddress" name="userAddress"></textarea>
-        </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-            <mat-label>Moyen de paiement</mat-label>
-            <select matNativeControl required [(ngModel)]="paymentMethod" name="paymentMethod">
-              <option value="cb">Carte Bancaire</option>
-              <option value="paypal">Paypal</option>
-              <option value="metamask">Metamask</option>
-            </select>
-          </mat-form-field>
-
-          <button class="submit button" (click)="createOrder(userEmail, userAddress)">Payer ma commande</button>
-      </form>
-
-</div>
 
 <button routerLink="/orderslist" class="submit button" (click)="getOrders()">Show me orders</button>

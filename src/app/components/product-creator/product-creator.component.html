@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="page-div">
+<div class="page-div" [ngStyle]="{'opacity': isPopupVisible ? 0.5 : 1}">
   <div class="box">
     <form (ngSubmit)="addProduct()" #dataForm="ngForm">
       <fieldset>
@@ -34,15 +34,14 @@
       </mat-form-field>
       <br>
       <button class="button" (click)="togglePopup($event)">Supprimer</button>
-   
-    <div class="box popup" [ngClass]="{ 'popup-toggle': isPopupVisible}">
-      <h2 class="popup-message-confirmation">Vous êtes sur le point de supprimer un produit. Êtes-vous certain?</h2>
-      <button class="button popup-message-confirmation" type="submit"  (click)="deleteProduct(productId)">Oui, supprimer</button>
-      <button class="button popup-message-confirmation" (click)="togglePopup($event)">Non</button>
-    </div>
+  
   </fieldset>
   </form>
-  <button class="button" (click)="showSuccess('')">Test Toast</button>
+</div>
+<div class="box popup" [ngClass]="{ 'popup-toggle': isPopupVisible}">
+  <h2 class="popup-message-confirmation">Vous êtes sur le point de supprimer un produit. Êtes-vous certain?</h2>
+  <button class="button popup-message-confirmation" type="submit"  (click)="deleteProduct(productId)">Oui, supprimer</button>
+  <button class="button popup-message-confirmation" (click)="togglePopup($event)">Non</button>
 </div>
 
 

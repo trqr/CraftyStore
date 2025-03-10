@@ -18,6 +18,7 @@ html {
 
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #4A4A4A;
+    margin-top: 0px;
 }
 @media (max-width: 768px) {
     .product-container {
@@ -46,7 +47,7 @@ body{
 }
 
 .product-container {
-    background-color: #A8B8A4;
+    background-color: #d3e6ce;
     border: 2px solid black;
     border-radius: 15px;
     display: inline-block;
@@ -68,7 +69,7 @@ body{
 }
 
 .box {
-    background-color: rgb(178, 214, 255);
+    background-color: #d3e6ce;
     border: 2px solid black;
     border-radius: 15px;
     display: inline-block;
@@ -88,12 +89,13 @@ body{
 }
 
 .product-container:hover {
-    background-color: #c5d1c2;
+    background-color: #e5f7ce;
 }
 
 .button {
     height: 40px;
     width: 150;
+    margin: 10px 10px;
     border-radius: 10px;
     background-color: #D8B499;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);

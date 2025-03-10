@@ -1,18 +1,13 @@
 export class Order {
-    orderId : String;
-    customerMail : String;
-    deliveryAddress : String;
-    cart: {id: number, quantity: number}[];
+    orderId! : number;
+    customerId: number;
     price : number;
     deliveryOption: number;
     
 
-    constructor(customerMail: String, deliveryAddress: String, cart: {id: number, quantity: number}[], price: number, deliveryOption: number){
-         this.orderId = crypto.randomUUID();
-         this.customerMail = customerMail;
-         this.deliveryAddress = deliveryAddress;
-         this.cart = cart;
-         this.price = price;
-         this.deliveryOption = deliveryOption;
+    constructor(customerId: number, price: number, deliveryOption: number){
+        this.customerId = customerId;
+        this.price = price;
+        this.deliveryOption = deliveryOption;
     }
 }

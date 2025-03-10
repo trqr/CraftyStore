@@ -1,19 +1,21 @@
 import { inject, Injectable } from "@angular/core";
 import { Product } from "../models/product.model";
-import { HttpClient, provideHttpClient } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/internal/Observable";
 import { of, tap } from "rxjs";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductsService {
-    private httpClient = inject(HttpClient);
-
+    private http = inject(HttpClient);
+    
+    constructor(private toastrService: ToastrService){}
   
     getProducts(): Observable<Product[]> {
       if (this.products.length == 0) {
-       return this.httpClient.get<Product[]>('http://localhost:8080/products').pipe(tap((data: Product[])=> {
+       return this.http.get<Product[]>('http://localhost:8080/products').pipe(tap((data: Product[])=> {
         this.products = data;
        }));
       } else {
@@ -21,6 +23,27 @@ export class ProductsService {
       }
     }
 
+    addProduct(productData: {}){
+      this.http.post('http://localhost:8080/submit-product-data', productData, { responseType: 'text' })
+      .subscribe(response => {
+        console.log('Réponse du serveur:', response);
+        this.toastrService.success('Produit ajouté', 'Ajout réussi');
+          },
+        error => {
+        console.error(`Erreur lors de l'ajout du produit:`, error);
+        this.toastrService.error(`Erreur lors de l'ajout du produit`, 'Echec');
+      });
+    }
+
+    deleteProduct(id: number){
+      this.http.delete("http://localhost:8080/delete-product-data", {params: { id: id}, responseType: 'text', observe: 'body' }).subscribe(response => {
+        console.log('Réponse du serveur:', response);
+        this.toastrService.success('Produit effacé', 'Suppression réussie');
+          }, error => {
+        console.error('Erreur lors de la suppression du produit:', error);
+        this.toastrService.error('Erreur lors de la suppression du produit', 'Echec');
+      });
+    }
 
 
     private products: Product[] = [];
@@ -63,13 +86,13 @@ export class ProductsService {
         // ),new Product(
         //   "Sticker Mouton pour TShirt",
         //   "Sticker mouton amusant pour personnaliser vos T-shirts. Facile à appliquer et durable.",
-        //   "./assets/animals-3278317_1280.png",
+        //   "../assets/animals-3278317_1280.png",
         //   16.90,
         //   21.99
         // ),new Product(
         //   "Feuille d'érable séchée",
         //   "Feuille d'érable séchée pour la décoration. Parfaite pour ajouter une touche naturelle et automnale à votre intérieur.",
-        //   "./assets/painting-8032889_1280.png",
+        //   "../assets/painting-8032889_1280.png",
         //   4.50,
         //   4.50
         // ),new Product(
@@ -81,25 +104,13 @@ export class ProductsService {
         // ),new Product(
         //   "Pistolet à colle",
         //   "Pistolet à colle pratique pour tous vos projets de bricolage et de réparation. Facile à utiliser et compatible avec différents types de bâtons de colle.",
-        //   "./assets/tool-159300_1280.png",
-        //   18.00,
+        //   "../assets/tool-159300_1280.png",
+        //   18.00, 
         //   26.99
         // )];
-
 
         getProduct(id: number): Product | undefined{
             const matchingProduct = this.products.find(product => product.id === id);
             return matchingProduct;
         }
-
-        // saveProductsToLocalStorage() {
-        //   localStorage.setItem('products', JSON.stringify(this.products));
-        // }
-      
-        // loadProductsFromLocalStorage() {
-        //   const products = localStorage.getItem('products');
-        //   if (products) {
-        //     this.products = JSON.parse(products);
-        //   }
-        // }
 }
