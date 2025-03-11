@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { ProductsService } from '../../services/products.service';
 import { CartService } from '../../services/cart.service';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -14,20 +14,20 @@ import { Customer } from '../../models/customer.model';
 
 @Component({
   selector: 'app-order-confirmation',
-  imports: [HeaderComponent, DecimalPipe, FormsModule, MatFormFieldModule, MatInputModule, RouterLink],
+  imports: [HeaderComponent, DecimalPipe, FormsModule, MatFormFieldModule, MatInputModule, RouterLink, NgClass],
   templateUrl: './order-confirmation.component.html',
   styleUrl: './order-confirmation.component.scss'
 })
 export class OrderConfirmationComponent {
   
   cart: any;
-  orders!: Order[]
 
   userName!: String;
   userEmail!: String;
   userAddress!: String;
   paymentMethod: String = "";
   
+  isClicked: boolean= false;
 
   constructor(private ProductsService: ProductsService, private CartService: CartService, private OrdersService: OrdersService, private customerService: CustomerService){
     this.cart = this.CartService.getCart();
@@ -50,16 +50,14 @@ export class OrderConfirmationComponent {
   async addCustomer(){
     const newCustomer = new Customer(this.userName, this.userEmail, this.userAddress, this.paymentMethod, 0);
     this.customerService.addCustomer(newCustomer);
+    this.isClicked = true;
   } 
 
   createOrder(){
     console.log(this.customerService.newUserId);
-    this.OrdersService.createOrder(this.customerService.newUserId); 
+    this.OrdersService.createOrder(this.customerService.newUserId);
   }
 
-  getOrders(){
-    this.orders = this.OrdersService.getOrders();
-  }
 
 }
 

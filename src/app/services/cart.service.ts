@@ -25,6 +25,7 @@ export class CartService {
       });
     };
     this.toastrService.success('Produit ajouté au panier', 'Opération réussie')
+    this.saveCartToLocalStorage();
     return this.cart;
   }
 
@@ -35,10 +36,12 @@ export class CartService {
     } else {
       this.cart.splice(itemIndex, 1);
     }
+    this.saveCartToLocalStorage();
     return this.cart;
   }
 
   getCart(){ 
+    this.loadCartFromLocalStorage()
     return this.cart;
   }
 
@@ -81,6 +84,23 @@ export class CartService {
 
   getDeliveryOption(){
     return this.deliveryOption;
+  }
+
+  clearCart(){
+    this.cart = [];
+    this.saveCartToLocalStorage();
+    return this.cart;
+  }
+
+  saveCartToLocalStorage() {
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
+
+  loadCartFromLocalStorage() {
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      this.cart = JSON.parse(cart);
+    }
   }
 }
 

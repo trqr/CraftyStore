@@ -15,6 +15,16 @@ export class OrdersService {
     constructor(private CartServive: CartService, private toastrService: ToastrService, private http: HttpClient){}
 
     private orders: Order[] = [];
+
+    getOrders(): Observable<Order[]> {
+      if (this.orders.length == 0) {
+        return this.http.get<Order[]>('http://localhost:8080/orders').pipe(tap((data: Order[])=> {
+        this.orders = data;
+        }));
+      } else {
+        return of(this.orders)
+      }
+    }
     
     createOrder(customerId: number){
         const newOrder = new Order(customerId,this.CartServive.getTotalOrderPrice(), this.CartServive.getDeliveryOption());
@@ -22,28 +32,11 @@ export class OrdersService {
       .subscribe(response => {
         console.log('Réponse du serveur:', response);
         this.toastrService.success('Votre commande est en attente','Opération réussie');
+        this.CartServive.clearCart();
           }, error => {
         console.error(`Erreur lors de l'ajout de la commande:`, error);
         this.toastrService.error(`Erreur lors de l'ajout de la commande`, 'Echec');
       });
     }
-
-    getOrders(){
-        this.loadOrdersFromLocalStorage();
-        return this.orders;
-    }
-
-    saveOrdersToLocalStorage() {
-        localStorage.setItem('orders', JSON.stringify(this.orders));
-      }
-    
-      loadOrdersFromLocalStorage() {
-        const orders = localStorage.getItem('orders');
-        if (orders) {
-          this.orders = JSON.parse(orders);
-        }
-      }
-
-
 
 }

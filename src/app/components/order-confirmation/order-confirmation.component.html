@@ -1,7 +1,10 @@
 <app-header></app-header>
-<h1>Veuillez renseigner vos informations</h1>
-<div class="box">
+
+<h1>Récapitulatif de votre commande</h1>
+
+<div class="box" [ngClass]="{ 'info-toggle': isClicked}">
     <form class="user-info-form">
+      <legend><h3>Veuillez renseigner vos informations</h3></legend>
         <mat-form-field class="example-full-width">
             <mat-label>Votre nom</mat-label>
             <input matInput placeholder="Ex. Jean Daniel" required [(ngModel)]="userName" name="userName"> 
@@ -31,7 +34,6 @@
 
 </div>
 
-<h1>Récapitulatif de votre commande</h1>
 <div class="order-recap box">
     <table>
         <tr>
@@ -63,4 +65,4 @@
 
 
 
-<button routerLink="/orderslist" class="submit button" (click)="getOrders()">Show me orders</button>
+<button routerLink="/orderslist" class="submit button">Show me orders</button>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import { Order } from '../../models/order.model';
 import { OrdersService } from '../../services/orders.service';
@@ -11,13 +11,17 @@ import { DecimalPipe } from '@angular/common';
   templateUrl: './orders-list.component.html',
   styleUrl: './orders-list.component.scss'
 })
-export class OrdersListComponent {
+export class OrdersListComponent implements OnInit {
 
-  displayedColumns: string[] = ['orderId', 'customerMail', 'deliveryAddress', 'Cart', 'price', 'deliveryOption'];
+  displayedColumns: string[] = ['orderId', 'customerId', 'price', 'deliveryOption'];
   dataSource: Order[] = [];
 
   constructor(private OrdersService: OrdersService){
-    this.dataSource = this.OrdersService.getOrders();
   }
 
+  ngOnInit(): void {
+    this.OrdersService.getOrders().subscribe(orders => {
+      this.dataSource = orders;
+    });
+  }
 }

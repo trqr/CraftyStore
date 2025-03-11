@@ -6,32 +6,22 @@
   
     <ng-container matColumnDef="orderId">
       <th mat-header-cell *matHeaderCellDef> Order id </th>
-      <td mat-cell *matCellDef="let element"> {{element.orderId}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
   
-    <ng-container matColumnDef="customerMail">
-      <th mat-header-cell *matHeaderCellDef> Mail </th>
-      <td mat-cell *matCellDef="let element"> {{element.customerMail}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="deliveryAddress">
-      <th mat-header-cell *matHeaderCellDef> Adresse de livraison </th>
-      <td mat-cell *matCellDef="let element"> {{element.deliveryAddress}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="Cart">
-      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-      <td mat-cell *matCellDef="let element">@for (products of element.cart; track products.id) { {{products.id}} } </td>
+    <ng-container matColumnDef="customerId">
+      <th mat-header-cell *matHeaderCellDef> Customer Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.customerId}} </td>
     </ng-container>
 
     <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef> Symbol </th>
+        <th mat-header-cell *matHeaderCellDef> Order price </th>
         <td mat-cell *matCellDef="let element"> {{element.price | number: "1.0-2"}} € </td>
       </ng-container>
 
       <ng-container matColumnDef="deliveryOption">
-        <th mat-header-cell *matHeaderCellDef> Symbol </th>
-        <td mat-cell *matCellDef="let element"> {{element.deliveryOption}} </td>
+        <th mat-header-cell *matHeaderCellDef> Delivery Option </th>
+        <td mat-cell *matCellDef="let element"> {{element.deliveryOption | number: "1.0-2"}} € </td>
       </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
