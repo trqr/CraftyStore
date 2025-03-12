@@ -1,13 +1,9 @@
-export class Order {
-    orderId! : number;
-    customerId: number;
-    price : number;
+import { Customer } from "./customer.model";
+
+export interface Order {
+    orderId?: number;
+    customer: Customer;
+    price: number;
     deliveryOption: number;
     
-
-    constructor(customerId: number, price: number, deliveryOption: number){
-        this.customerId = customerId;
-        this.price = price;
-        this.deliveryOption = deliveryOption;
-    }
 }

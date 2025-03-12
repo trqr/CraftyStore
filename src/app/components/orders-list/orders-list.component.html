@@ -9,9 +9,19 @@
       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
   
-    <ng-container matColumnDef="customerId">
-      <th mat-header-cell *matHeaderCellDef> Customer Id </th>
-      <td mat-cell *matCellDef="let element"> {{element.customerId}} </td>
+    <ng-container matColumnDef="customerName">
+      <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.customer.customerName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="customerMail">
+      <th mat-header-cell *matHeaderCellDef> Customer Mail </th>
+      <td mat-cell *matCellDef="let element"> {{element.customer.customerMail}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="customerAddress">
+      <th mat-header-cell *matHeaderCellDef> Customer Address </th>
+      <td mat-cell *matCellDef="let element"> {{element.customer.customerAddress}} </td>
     </ng-container>
 
     <ng-container matColumnDef="price">

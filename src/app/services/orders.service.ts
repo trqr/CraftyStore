@@ -5,6 +5,7 @@ import { ToastrService } from "ngx-toastr";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/internal/Observable";
 import { of, tap } from "rxjs";
+import { Customer } from "../models/customer.model";
 
 
 @Injectable({
@@ -26,8 +27,12 @@ export class OrdersService {
       }
     }
     
-    createOrder(customerId: number){
-        const newOrder = new Order(customerId,this.CartServive.getTotalOrderPrice(), this.CartServive.getDeliveryOption());
+    createOrder(customer: Customer){
+        const newOrder: Order = {
+          customer: customer, 
+          price: this.CartServive.getTotalOrderPrice(), 
+          deliveryOption: this.CartServive.getDeliveryOption()
+        };
         this.http.post('http://localhost:8080/create-order', newOrder, { responseType: 'text' })
       .subscribe(response => {
         console.log('Réponse du serveur:', response);

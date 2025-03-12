@@ -47,15 +47,14 @@ export class OrderConfirmationComponent {
     return this.CartService.getDeliveryOption();
   }
 
-  async addCustomer(){
+  addCustomer(){
     const newCustomer = new Customer(this.userName, this.userEmail, this.userAddress, this.paymentMethod, 0);
     this.customerService.addCustomer(newCustomer);
     this.isClicked = true;
   } 
 
   createOrder(){
-    console.log(this.customerService.newUserId);
-    this.OrdersService.createOrder(this.customerService.newUserId);
+    this.OrdersService.createOrder(this.customerService.newCustomer);
   }
 
 

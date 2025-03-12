@@ -10,7 +10,7 @@ import { Customer } from "../models/customer.model";
 })
 export class CustomerService {
     
-    newUserId!: number;
+    newCustomer!: Customer;
 
     constructor(private toastrService: ToastrService, private http: HttpClient){}
 
@@ -19,7 +19,7 @@ export class CustomerService {
         .subscribe((response: any) => {
             console.log('Réponse du serveur', response);
             this.toastrService.success('Client ajouté', 'Ajout réussi');
-            this.newUserId = response as number;
+            this.newCustomer = response as Customer;
             },
              error => {
         console.error(`Erreur lors de l'enregistrement du client:`, error);
