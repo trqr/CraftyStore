@@ -9,12 +9,12 @@
           <th>Quantité</th>
           <th>Prix</th>
       </tr>
-  @for (item of cart; track item.id) {
+  @for (item of cart; track item.product.id) {
 
           <tr>
-              <td>{{ getProduct(item.id)?.name}}</td>
+              <td>{{ item.product.name }}</td>
               <td>{{ item.quantity }}</td>
-              <td>{{ ((getProduct(item.id)?.price ?? 0) * (item?.quantity ?? 0)) | number: "1.0-2" }} €</td>
+              <td>{{ item.productPrice * item.quantity | number: "1.0-2" }} €</td>
           </tr>
       }
       <tr>
