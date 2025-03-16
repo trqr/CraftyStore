@@ -2,7 +2,6 @@
     <div class="img-container">
         <img [src]="product.imgUrl" alt="">
     </div>
-    <h4 class="price">{{ product.price | currency : "EUR" }}</h4>
     @if (product.retailPrice != product.price) {
         <div class="retail-price-info">Prix conseillé:  
             <span class="retail-price price">{{ product.retailPrice | number: "1.0-2"  }}</span>
@@ -12,5 +11,5 @@
     <p class="product-name">{{ product.name }}</p>
     <p class="product-description">{{ product.description }}</p>
     <button class="button addtocart-button"
-    (click)="addToCart(product)">Ajouter au panier</button>
+    (click)="addToCart(product)"> <b>{{ product.price | currency : "EUR" }}</b></button>
 </div>
