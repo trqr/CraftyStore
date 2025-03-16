@@ -29,6 +29,7 @@ export class OrderConfirmationComponent {
   
   isClicked: boolean= false;
 
+
   constructor(private ProductsService: ProductsService, private CartService: CartService, private OrdersService: OrdersService, private customerService: CustomerService){
     this.cart = this.CartService.getCart();
   }
@@ -47,14 +48,14 @@ export class OrderConfirmationComponent {
     return this.CartService.getDeliveryOption();
   }
 
-  addCustomer(){
+  addCustomer(): Customer{
     const newCustomer = new Customer(this.userName, this.userEmail, this.userAddress, this.paymentMethod, 0);
-    this.customerService.addCustomer(newCustomer);
-    this.isClicked = true;
+    return newCustomer;
   } 
 
   createOrder(){
-    this.OrdersService.createOrder(this.customerService.newCustomer);
+    this.OrdersService.createOrder(this.addCustomer());
+    this.isClicked = true;
   }
 
 

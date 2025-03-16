@@ -15,5 +15,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 registerLocaleData(localeFr, 'fr-FR');
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), { provide: LOCALE_ID, useValue: "fr-FR"},provideClientHydration(withEventReplay()), provideAnimationsAsync(), provideHttpClient(withInterceptorsFromDi()), provideToastr(),provideAnimations(), {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}]
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), { provide: LOCALE_ID, useValue: "fr-FR"},provideClientHydration(withEventReplay()), provideAnimationsAsync(), provideHttpClient(withInterceptorsFromDi()), provideToastr(),provideAnimations(), {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}, provideToastr({
+    positionClass: 'toast-bottom-right'
+  })]
 };

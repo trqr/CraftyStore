@@ -2,6 +2,34 @@
 
 <h1>Récapitulatif de votre commande</h1>
 
+<div class="order-recap box">
+  <table>
+      <tr>
+          <th>Produit</th>
+          <th>Quantité</th>
+          <th>Prix</th>
+      </tr>
+  @for (item of cart; track item.id) {
+
+          <tr>
+              <td>{{ getProduct(item.id)?.name}}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ ((getProduct(item.id)?.price ?? 0) * (item?.quantity ?? 0)) | number: "1.0-2" }} €</td>
+          </tr>
+      }
+      <tr>
+          <td>Livraison</td>
+          <td></td>
+          <td>{{getDeliveryOption()  | number: "1.0-2" }} €</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>Total: </td>
+          <td>{{(getTotalOrderPrice() + getDeliveryOption()) | number: "1.0-2" }} €</td>
+      </tr>
+      </table>
+</div>
+
 <div class="box" [ngClass]="{ 'info-toggle': isClicked}">
     <form class="user-info-form">
       <legend><h3>Veuillez renseigner vos informations</h3></legend>
@@ -29,39 +57,12 @@
             </select>
           </mat-form-field>
 
-          <button class="submit button" (click)="addCustomer()" >Valider mes informations</button>
+          <button class="submit button" (click)="createOrder()" >Valider mes informations et commander</button>
       </form>
 
 </div>
 
-<div class="order-recap box">
-    <table>
-        <tr>
-            <th>Produit</th>
-            <th>Quantité</th>
-            <th>Prix</th>
-        </tr>
-    @for (item of cart; track item.id) {
 
-            <tr>
-                <td>{{ getProduct(item.id)?.name}}</td>
-                <td>{{ item.quantity }}</td>
-                <td>{{ ((getProduct(item.id)?.price ?? 0) * (item?.quantity ?? 0)) | number: "1.0-2" }} €</td>
-            </tr>
-        }
-        <tr>
-            <td>Livraison</td>
-            <td></td>
-            <td>{{getDeliveryOption()  | number: "1.0-2" }} €</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>Total: </td>
-            <td>{{(getTotalOrderPrice() + getDeliveryOption()) | number: "1.0-2" }} €</td>
-        </tr>
-        </table>
- <button class="button" (click)="createOrder()">Confirmer la commande et passer au paiement</button>
-</div>
 
 
 

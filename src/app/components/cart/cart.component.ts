@@ -5,6 +5,7 @@ import { ProductsService } from '../../services/products.service';
 import { OrderSummaryComponent } from "../order-summary/order-summary.component";
 import { DecimalPipe } from '@angular/common';
 import { Product } from '../../models/product.model';
+import { Order } from '../../models/order.model';
 
 @Component({
   selector: 'app-cart',
@@ -18,7 +19,7 @@ export class CartComponent implements OnInit {
   constructor(private CartService: CartService, private ProductsService: ProductsService){}
 
   products!: Product[];
-  cart: { id: number, quantity: number }[] = []
+  cart!: { product: Product, productPrice: number, quantity: number, order?: Order }[];
 
   ngOnInit(): void {
     this.ProductsService.getProducts().subscribe(products => {

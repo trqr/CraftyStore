@@ -24,6 +24,11 @@
       <td mat-cell *matCellDef="let element"> {{element.customer.customerAddress}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="cartProducts">
+      <th mat-header-cell *matHeaderCellDef> cartProducts </th>
+      <td mat-cell *matCellDef="let element">@for (cart of element.cart; track cart.id) { {{cart.product.name }} x {{cart.quantity}} <br> } </td>
+    </ng-container>
+
     <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef> Order price </th>
         <td mat-cell *matCellDef="let element"> {{element.price | number: "1.0-2"}} € </td>

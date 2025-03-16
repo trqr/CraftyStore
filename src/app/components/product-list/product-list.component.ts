@@ -3,6 +3,7 @@ import { Product } from '../../models/product.model';
 import { ProductContainerComponent } from "../product-container/product-container.component";
 import { ProductsService } from '../../services/products.service';
 import { HeaderComponent } from "../header/header.component";
+import { CartService } from '../../services/cart.service';
 
 @Component({
   standalone: true,
@@ -14,7 +15,7 @@ import { HeaderComponent } from "../header/header.component";
 export class ProductListComponent implements OnInit {
   products! : Product[];
 
-  constructor(private ProductsService: ProductsService){}
+  constructor(private ProductsService: ProductsService, private cartService: CartService){}
   
   ngOnInit(): void {
     this.ProductsService.getProducts().subscribe(products => {

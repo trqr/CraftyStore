@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from '../models/product.model';
 import { ProductsService } from './products.service';
 import { ToastrService } from 'ngx-toastr';
+import { Order } from '../models/order.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +11,19 @@ export class CartService {
 
   constructor(private ProductsService: ProductsService, private toastrService: ToastrService){}
 
-  private cart: { id: number, quantity: number}[] = []
+  private cart: { product: Product, productPrice: number, quantity: number, order?: Order}[] = []
 
   deliveryOption : number = 0;
 
   addToCart(product: Product){
-    const alreadyInCart = this.cart.find(item => item.id === product.id);
+    console.log(this.cart)
+    const alreadyInCart = this.cart.find(item => item.product.id === product.id);
     if (alreadyInCart) {
       alreadyInCart.quantity++;
     } else {
       this.cart.push({
-        id: product.id!,
+        product: product,
+        productPrice: product.price,
         quantity: 1
       });
     };
@@ -30,13 +33,16 @@ export class CartService {
   }
 
   removeFromCart(id: number){
-    const itemIndex = this.cart.findIndex(item => item.id === id);
-    if (this.cart[itemIndex].quantity > 1) {
-      this.cart[itemIndex].quantity--;
-    } else {
-      this.cart.splice(itemIndex, 1);
+    this.getCart();
+    const itemIndex = this.cart.findIndex(item => item.product.id === id);
+    if (itemIndex !== -1) {
+      if (this.cart[itemIndex].quantity > 1) {
+        this.cart[itemIndex].quantity--;
+      } else {
+        this.cart.splice(itemIndex, 1);
+      }
+      this.saveCartToLocalStorage();
     }
-    this.saveCartToLocalStorage();
     return this.cart;
   }
 
@@ -55,7 +61,7 @@ export class CartService {
 
   getSavings(id: number){
     let product = this.ProductsService.getProduct(id);
-    let quantity = this.cart.find(item => item.id === id)?.quantity ?? 0;
+    let quantity = this.cart.find(item => item.product.id === id)?.quantity ?? 0;
     let savings = ((product?.retailPrice ?? 0) - (product?.price ?? 0)) * quantity;
     return savings;
   }
@@ -63,9 +69,7 @@ export class CartService {
   getTotalOrderPrice(){
     let total = 0;
     this.cart.forEach((product) => {
-      let productPrice = this.ProductsService.getProduct(product.id)?.price ?? 0;
-      let quantity = product.quantity;
-      total += productPrice * quantity;
+      total += product.productPrice * product.quantity;
     });
     return total;
   }
@@ -73,7 +77,7 @@ export class CartService {
   getTotalSavings(){
     let total = 0
     this.cart.forEach((product) => {
-      total += this.getSavings(product.id);
+      total += this.getSavings(product.product.id!);
     });
     return total;
   }

@@ -27,11 +27,12 @@ export class OrdersService {
       }
     }
     
-    createOrder(customer: Customer){
+    public createOrder(customer: Customer){
         const newOrder: Order = {
           customer: customer, 
           price: this.CartServive.getTotalOrderPrice(), 
-          deliveryOption: this.CartServive.getDeliveryOption()
+          deliveryOption: this.CartServive.getDeliveryOption(),
+          cart: this.CartServive.getCart()
         };
         this.http.post('http://localhost:8080/create-order', newOrder, { responseType: 'text' })
       .subscribe(response => {

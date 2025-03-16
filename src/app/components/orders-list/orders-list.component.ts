@@ -13,7 +13,7 @@ import { DecimalPipe } from '@angular/common';
 })
 export class OrdersListComponent implements OnInit {
 
-  displayedColumns: string[] = ['orderId', 'customerName','customerMail','customerAddress', 'price', 'deliveryOption'];
+  displayedColumns: string[] = ['orderId', 'customerName','customerMail','customerAddress', 'cartProducts', 'price', 'deliveryOption'];
   dataSource: Order[] = [];
 
   constructor(private OrdersService: OrdersService){

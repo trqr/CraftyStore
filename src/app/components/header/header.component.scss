@@ -27,15 +27,16 @@ a {
   }
 
   .title-container {
-    align-items: center;
-    align-content: center;
-    text-align: center;
+    width: 33%;
+    text-align: left;
+    align-items: left;
+    justify-content: left;
   }
 
   .website-title {
     font-weight: 700;
-    font-size: 35px;
-    text-align: center;
+    font-size: 45px;
+
   }
 
   
@@ -64,8 +65,8 @@ a {
   }
 
   .cart-logo {
-    align-items: center;
-    align-content: center;
+    width: 33%;
+    text-align: right;
   }
 
 .cart-logo-quantity {
@@ -75,6 +76,7 @@ a {
 }
 
 nav {
+  width: 33%;
   font-size: large;
   font-weight: 600;
 }
