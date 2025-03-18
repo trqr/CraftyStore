@@ -10,6 +10,22 @@
          @else { <br>}
     <p class="product-name">{{ product.name }}</p>
     <p class="product-description">{{ product.description }}</p>
-    <button class="button addtocart-button"
-    (click)="addToCart(product)"> <b>{{ product.price | currency : "EUR" }}</b></button>
+    <div class="addtocart-container">
+        <button class="button addtocart-button"
+        (click)="addToCart(product, selectedQuantity)"> <b>{{ product.price * selectedQuantity | currency : "EUR" }}</b></button>
+        <mat-form-field class="select-quantity">
+            <mat-label>Quantité</mat-label>
+            <select matNativeControl required [(ngModel)]="selectedQuantity" name="selectedQuantity">
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+            <option value=7>7</option>
+            <option value=8>8</option>
+            <option value=9>9</option>
+            </select>
+        </mat-form-field>
+    </div>
 </div>

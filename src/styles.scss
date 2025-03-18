@@ -60,7 +60,7 @@ body{
     display: inline-block;
     justify-content: center;
     grid-template-columns: repeat(8, 1fr);
-    height: 385px;
+    height: 360px;
     width: 250px;
     margin: 15px 5px;
     padding: 5px 5px;
@@ -76,7 +76,7 @@ body{
 
 .box {
     background-color: #d7e4d4;
-    border: 2px solid black;
+    border: 1.5px solid black;
     border-radius: 15px;
     display: block;
     justify-content: flex-end;
@@ -85,7 +85,7 @@ body{
     width: 100%;
     margin: 15px 5px;
     padding: 20px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.349);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.349);
 }
 
 .img-container {

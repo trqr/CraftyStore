@@ -15,16 +15,16 @@ export class CartService {
 
   deliveryOption : number = 0;
 
-  addToCart(product: Product){
+  addToCart(product: Product, selectedQuantity: number){
     console.log(this.cart)
     const alreadyInCart = this.cart.find(item => item.product.id === product.id);
     if (alreadyInCart) {
-      alreadyInCart.quantity++;
+      alreadyInCart.quantity + selectedQuantity;
     } else {
       this.cart.push({
         product: product,
         productPrice: product.price,
-        quantity: 1
+        quantity: selectedQuantity
       });
     };
     this.toastrService.success('Produit ajouté au panier', 'Opération réussie')
