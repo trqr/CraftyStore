@@ -95,25 +95,25 @@ body{
 }
 
 .product-container:hover {
-    
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.2) ;
     background-color: #dee7da;
-    // border: 1.5px solid black;
+    transition: 0.3s;
 }
 
 .button {
     height: 40px;
     width: 150;
     margin: 10px 10px;
-    border-radius: 10px;
+    border-radius: 15px;
     border: 1px solid black;
     background-color: #dbc0ac;
 }
 
 .button:hover {
     background-color: #dfcbbc;
-    
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+    cursor: pointer;
 }
 
 .button:active {

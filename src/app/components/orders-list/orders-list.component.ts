@@ -22,6 +22,7 @@ export class OrdersListComponent implements OnInit {
   ngOnInit(): void {
     this.OrdersService.getOrders().subscribe(orders => {
       this.dataSource = orders;
+      console.log(orders)
     });
   }
 }

@@ -19,7 +19,7 @@ export class CartService {
     console.log(this.cart)
     const alreadyInCart = this.cart.find(item => item.product.id === product.id);
     if (alreadyInCart) {
-      alreadyInCart.quantity + selectedQuantity;
+      alreadyInCart.quantity += selectedQuantity;
     } else {
       this.cart.push({
         product: product,
@@ -55,7 +55,7 @@ export class CartService {
     let quantity = 0;
     this.cart.forEach(product => {
       quantity += product.quantity;
-    })
+    });
     return quantity;
   };
 

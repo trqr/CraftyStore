@@ -25,6 +25,6 @@ export class ProductContainerComponent{
 
 
   addToCart(product: Product, quantity: number) {
-      this.cart = this.CartService.addToCart(product, quantity);
+      this.cart = this.CartService.addToCart(product, +quantity);
   }
 }

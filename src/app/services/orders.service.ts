@@ -17,15 +17,19 @@ export class OrdersService {
 
     private orders: Order[] = [];
 
+    // getOrders(): Observable<Order[]> {
+    //   if (this.orders.length == 0) {
+    //     return this.http.get<Order[]>('http://localhost:8080/orders').pipe(tap((data: Order[])=> {
+    //     this.orders = data;
+    //     }));
+    //   } else {
+    //     return of(this.orders)
+    //   }
+    // }
+
     getOrders(): Observable<Order[]> {
-      if (this.orders.length == 0) {
         return this.http.get<Order[]>('http://localhost:8080/orders').pipe(tap((data: Order[])=> {
-        this.orders = data;
-        }));
-      } else {
-        return of(this.orders)
-      }
-    }
+        this.orders = data; }));}
     
     public createOrder(customer: Customer){
         const newOrder: Order = {

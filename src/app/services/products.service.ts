@@ -107,7 +107,42 @@ export class ProductsService {
         //   "../assets/tool-159300_1280.png",
         //   18.00, 
         //   26.99
-        // )];
+        // ),
+        // new Product(
+        //   "Boîte à bijoux artisanale",
+        //   "Boîte à bijoux en bois sculptée à la main, idéale pour ranger vos trésors.",
+        //   "../assets/jewelry-box-177116_1280.jpg",
+        //   25.00,
+        //   39.99
+        // ),
+        // new Product(
+        //   "Bougies parfumées",
+        //   "Lot de 3 bougies parfumées aux senteurs relaxantes pour créer une ambiance chaleureuse.",
+        //   "../assets/candles-2993936_1280.jpg",
+        //   15.00,
+        //   24.99
+        // ),
+        // new Product(
+        //   "Carnet de croquis",
+        //   "Carnet de croquis avec papier épais, parfait pour les artistes et les amateurs de dessin.",
+        //   "../assets/plans-1867745_1280.jpg",
+        //   12.90,
+        //   19.90
+        // ),
+        // new Product(
+        //   "Tapis de souris artistique",
+        //   "Tapis de souris avec des motifs artistiques uniques pour personnaliser votre espace de travail.",
+        //   "../assets/pexels-chelsey-horne-2961698-4930664.jpg",
+        //   9.90,
+        //   14.90
+        // ),
+        // new Product(
+        //   "Set de peinture aquarelle",
+        //   "Set complet de peinture aquarelle avec pinceaux et palette, idéal pour les débutants et les professionnels.",
+        //   "../assets/pexels-pavel-danilyuk-6925353.jpg",
+        //   29.90,
+        //   49.90
+        // )
 
         getProduct(id: number): Product | undefined{
             const matchingProduct = this.products.find(product => product.id === id);
