@@ -16,6 +16,7 @@
     <div class="cart-logo">
         <div class="login-container">
             <button mat-button (click)="openLoginDialog()">Se connecter</button>
+            <button mat-button (click)="openRegistrationDialog()">S'inscrire</button>
         </div>
         <button mat-button class="card-btn">
             <mat-icon class="svg-icon" routerLink="/cart" matBadge="{{getCartQuantity()}}" [matBadgeHidden]="hidden" svgIcon="cartIcon" aria-hidden="false" aria-label="Icon du panier"></mat-icon>

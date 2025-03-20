@@ -13,6 +13,7 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
+import { RegistrationDialogComponent } from '../registration-dialog/registration-dialog.component';
 
 const CART_ICON =
   `
@@ -42,6 +43,11 @@ export class HeaderComponent {
   openLoginDialog() {
     this.dialog.open(LoginDialogComponent);
   }
+
+  openRegistrationDialog() {
+    this.dialog.open(RegistrationDialogComponent);
+  }
+
 
   hidden: boolean = true;
 

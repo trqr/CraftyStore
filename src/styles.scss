@@ -7,6 +7,12 @@
     @include mat.table-overrides((
       background-color: #d7e4d4,
     ));
+    @include mat.stepper-overrides((
+    header-selected-state-icon-background-color: rgb(173, 173, 173),
+    container-color: #dde4dc,
+    header-edit-state-icon-background-color: #dbc0ac,
+    header-icon-background-color: #dbc0ac,
+  ));
   }
 
 html {

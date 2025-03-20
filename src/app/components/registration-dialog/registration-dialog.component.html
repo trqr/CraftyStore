@@ -1,0 +1,48 @@
+<h1 mat-dialog-title class="dialog-registration-title">Inscription</h1>
+<mat-dialog-content class="dialog-login-content">
+  <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form class="registration-form1" [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Remplissez votre nom d'utilisateur</ng-template>
+        <mat-form-field>
+          <mat-label>Nom d'utilisateur</mat-label>
+          <input matInput placeholder="Nom, pseudonyme..." formControlName="username" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Mot de passe</mat-label>
+          <input matInput placeholder="Au moins un chiffre et une majuscule" formControlName="password" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Confirmez votre mot de passe</mat-label>
+          <input matInput placeholder="Confirmez votre mot de passe" formControlName="verifypassword" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Suivant</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form class="registration-form2" [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Renseignez votre adresse</ng-template>
+        <mat-form-field>
+          <mat-label>Adresse postale</mat-label>
+          <input matInput formControlName="address" placeholder="Ex. 1 Bd Jean Jaures, 37000 Tours"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Précédent</button>
+          <button mat-button matStepperNext>Suivant</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Valider</ng-template>
+      <p>Vous êtes maintenant inscrit!</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button mat-dialog-close>Close</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</mat-dialog-content>
+
