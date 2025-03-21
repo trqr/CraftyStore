@@ -6,15 +6,15 @@
         <ng-template matStepLabel>Remplissez votre nom d'utilisateur</ng-template>
         <mat-form-field>
           <mat-label>Nom d'utilisateur</mat-label>
-          <input matInput placeholder="Nom, pseudonyme..." formControlName="username" required>
+          <input matInput type="text" placeholder="Nom, pseudonyme..." formControlName="userName" required>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Mot de passe</mat-label>
-          <input matInput placeholder="Au moins un chiffre et une majuscule" formControlName="password" required>
+          <input matInput type="password" placeholder="Au moins un chiffre et une majuscule" formControlName="userPassword" required>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Confirmez votre mot de passe</mat-label>
-          <input matInput placeholder="Confirmez votre mot de passe" formControlName="verifypassword" required>
+          <input matInput type="password" placeholder="Confirmez votre mot de passe" required>
         </mat-form-field>
         <div>
           <button mat-button matStepperNext>Suivant</button>
@@ -22,16 +22,21 @@
       </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
-      <form class="registration-form2" [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Renseignez votre adresse</ng-template>
+      <form class="registration-form2" [formGroup]="secondFormGroup" (ngSubmit)="addUser()">
+        <ng-template matStepLabel>Renseignez vos adresses</ng-template>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="userEmail" placeholder="Ex. jean@exemple.com"
+                 required>
+        </mat-form-field>
         <mat-form-field>
           <mat-label>Adresse postale</mat-label>
-          <input matInput formControlName="address" placeholder="Ex. 1 Bd Jean Jaures, 37000 Tours"
+          <input matInput formControlName="userAddress" placeholder="Ex. 1 Bd Jean Jaures, 37000 Tours"
                  required>
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Précédent</button>
-          <button mat-button matStepperNext>Suivant</button>
+          <button mat-button matStepperNext type="submit">Suivant</button>
         </div>
       </form>
     </mat-step>
@@ -45,4 +50,5 @@
     </mat-step>
   </mat-stepper>
 </mat-dialog-content>
+
 

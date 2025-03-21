@@ -5,7 +5,7 @@
 
 :root {
     @include mat.table-overrides((
-      background-color: #d7e4d4,
+      background-color: #dde4dc,
     ));
     @include mat.stepper-overrides((
     header-selected-state-icon-background-color: rgb(173, 173, 173),
@@ -57,11 +57,11 @@ html {
 }
 
 body{
-    background-color: #d7e4d4;
+    background-color: #dde4dc;
 }
 
 .product-container {
-    background-color: #d7e4d4;
+    background-color: #dde4dc;
     border-radius: 15px;
     display: inline-block;
     justify-content: center;
@@ -81,7 +81,7 @@ body{
 }
 
 .box {
-    background-color: #d7e4d4;
+    background-color: #dde4dc;
     border: 1.5px solid black;
     border-radius: 15px;
     display: block;
@@ -102,7 +102,7 @@ body{
 
 .product-container:hover {
     box-shadow: 0 1px 12px rgba(0, 0, 0, 0.2) ;
-    background-color: #dee7da;
+    background-color: #dce4d7;
     transition: 0.3s;
 }
 
@@ -111,13 +111,13 @@ body{
     width: 150;
     margin: 10px 10px;
     border-radius: 15px;
-    border: 1px solid black;
-    background-color: #dbc0ac;
+    border: 1px solid rgb(92, 91, 91);
+    background-color: #dfcbbc;
 }
 
 .button:hover {
-    background-color: #dfcbbc;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #e0d2c7;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     transition: 0.3s;
     cursor: pointer;
 }

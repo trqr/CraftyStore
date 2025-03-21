@@ -5,6 +5,8 @@ import { MatDialogTitle, MatDialogContent, MatDialogClose } from '@angular/mater
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatStepperModule} from '@angular/material/stepper';
+import { UsersService } from '../../services/users.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-registration-dialog',
@@ -15,13 +17,28 @@ import {MatStepperModule} from '@angular/material/stepper';
 export class RegistrationDialogComponent {
   private _formBuilder = inject(FormBuilder);
 
+  constructor(private usersService: UsersService){}
+
   firstFormGroup = this._formBuilder.group({
-    username: ['', Validators.required],
-    password: ['', Validators.required],
-    verifypassword: ['', Validators.required]
+    userName: ['', Validators.required],
+    userPassword: ['', Validators.required]
   });
   secondFormGroup = this._formBuilder.group({
-    address: ['', Validators.required],
+    userEmail: ['', [Validators.email, Validators.required]],
+    userAddress: ['', Validators.required]
   });
   isLinear = false;
+
+  getUser(): User {
+    return {
+      userName: this.firstFormGroup.get('userName')?.value || '',
+      userPassword: this.firstFormGroup.get('userPassword')?.value || '',
+      userEmail: this.secondFormGroup.get('userEmail')?.value || '',
+      userAddress: this.secondFormGroup.get('userAddress')?.value || ''
+    };
+  }
+
+  addUser() {
+    this.usersService.addUser(this.getUser());
+  }
 }
