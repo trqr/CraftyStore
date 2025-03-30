@@ -1,15 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-login-dialog',
-  imports: [MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, MatButtonModule, MatFormField, MatLabel, MatInputModule],
+  imports: [MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, MatButtonModule, MatFormField, MatLabel, MatInputModule, FormsModule, ReactiveFormsModule],
   templateUrl: './login-dialog.component.html',
   styleUrl: './login-dialog.component.scss'
 })
 export class LoginDialogComponent {
+
+  constructor(private userService: UsersService){}
+
+    private _formBuilder = inject(FormBuilder);
+  
+    loginForm = this._formBuilder.group({
+      userName: ['', Validators.required],
+      userPassword: ['', Validators.required]
+    });
+  
+  getUserData() {
+    return {
+      userName: this.loginForm.get('userName')?.value || '',
+      userPassword: this.loginForm.get('userPassword')?.value || '',
+    };
+  }
+
+
+  logIn(){
+    this.userService.logIn(this.getUserData());
+  }
 
 }

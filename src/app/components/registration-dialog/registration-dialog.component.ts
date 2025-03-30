@@ -35,6 +35,7 @@ export class RegistrationDialogComponent {
       userPassword: this.firstFormGroup.get('userPassword')?.value || '',
       userEmail: this.secondFormGroup.get('userEmail')?.value || '',
       userAddress: this.secondFormGroup.get('userAddress')?.value || ''
+
     };
   }
 

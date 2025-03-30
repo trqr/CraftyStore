@@ -1,9 +1,21 @@
-.landing-block {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
+
+.landing-block1 {
+    position: relative;
+    background-image: url("../../../../public/assets/logoCraftyStore.png");
+    background-attachment: fixed;
+    width: 800px;
+    height: 500px;
+    border-radius: 26% 30% 40% 50%;
+  }
+
+  .landing-block2 {
+    position: relative;
+    margin: 30px auto;
+    background-image: url("../../../../public/assets/candles-2993936_1280.jpg");
+    background-attachment: fixed;
+    width: 1000px;
+    height: 500px;
+    border-radius: 26% 30% 60% 20%;
   }
   
   .landing-links {
@@ -39,3 +51,4 @@
 img {
   height: 550px;
 }
+
