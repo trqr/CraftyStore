@@ -13,8 +13,6 @@
     align-items: center;
 }
 
-
-
 .login-dialog-inputs {
     display: block;
     justify-content: center;
@@ -24,6 +22,7 @@
     .login-input {
         margin: 0px;
         width: 100%;
+        height: 70px;
     }
 }
 
@@ -31,7 +30,11 @@
     margin-top: 0px;
     padding-top: 0px;
     display: flex;
-    justify-content: center;
+}
+
+.right-login-dialog-buttons {
+    display: flex;
+    justify-content: space-between;
 }
 
 .forget-password {
@@ -39,4 +42,8 @@
     height: 10px;
     font-size: 12px;
     text-decoration: underline;
+}
+
+.login-button {
+    width: 140px;
 }

@@ -5,6 +5,7 @@ import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } fr
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UsersService } from '../../services/users.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login-dialog',
@@ -14,7 +15,7 @@ import { UsersService } from '../../services/users.service';
 })
 export class LoginDialogComponent {
 
-  constructor(private userService: UsersService){}
+  constructor(private authService: AuthService){}
 
     private _formBuilder = inject(FormBuilder);
   
@@ -32,7 +33,7 @@ export class LoginDialogComponent {
 
 
   logIn(){
-    this.userService.logIn(this.getUserData());
+    this.authService.logIn(this.getUserData());
   }
 
 }

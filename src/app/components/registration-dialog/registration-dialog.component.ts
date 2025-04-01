@@ -20,8 +20,8 @@ export class RegistrationDialogComponent {
   constructor(private usersService: UsersService){}
 
   firstFormGroup = this._formBuilder.group({
-    userName: ['', Validators.required],
-    userPassword: ['', Validators.required]
+    userName: ['', [Validators.minLength(3), Validators.required]],
+    userPassword: ['', [Validators.minLength(5) ,Validators.required]]
   });
   secondFormGroup = this._formBuilder.group({
     userEmail: ['', [Validators.email, Validators.required]],

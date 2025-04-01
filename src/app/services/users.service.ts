@@ -23,16 +23,5 @@ export class UsersService {
         });
         }
 
-        logIn(userData: {}){
-            this.http.post('http://localhost:8080/login', userData, {responseType: 'text'})
-            .subscribe((response: any) => {
-                localStorage.setItem("token", response);
-                console.log('Réponse du serveur', response);
-                this.toastrService.success('Mot de passe correct', 'Authentification réussie');
-                },
-                 error => {
-            console.error(`Erreur lors de l'enregistrement de l'authentification`, error);
-            this.toastrService.error(`Erreur lors de l'authentification:`, 'Echec');
-        });
-        }
+
 }
