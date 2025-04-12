@@ -1,7 +1,7 @@
 <app-header></app-header>
+<h1>Résumé de votre panier</h1>
 <div class="sidebars">
     <div class="left-sidebar">
-        <h1>Résumé de votre panier</h1>
         @for (item of cart; track item.product) {
             <div class="product-container">
                     <img [src]="item.product.imgUrl" alt="">

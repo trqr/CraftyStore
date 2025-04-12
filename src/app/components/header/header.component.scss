@@ -3,7 +3,7 @@ header {
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    background-color: #dde4dc;
+    background-color: #f8f3e8;
     border-bottom: 1.5px solid #333;
     border-right: 1.5px solid #333;
     border-left: 1.5px solid #333;
@@ -17,12 +17,18 @@ header {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.349);
 }
 
+
+
+
 a {
     margin: 0 10px;
     color: #333;
     text-decoration: none;
     &:hover {
       text-decoration: underline;
+      box-shadow: 0 6px 6px rgba(0, 0, 0, 0.19);
+      height: 60px;
+
     }
   }
 
