@@ -5,8 +5,8 @@
             <div class="login-dialog-inputs">
                 <div>
                     <mat-form-field class="login-input">
-                        <mat-label>Nom d'utilisateur</mat-label>
-                        <input matInput formControlName="userName">
+                        <mat-label>Email utilisateur</mat-label>
+                        <input matInput formControlName="userEmail">
                     </mat-form-field>
                 </div>
                 <div>
@@ -20,7 +20,7 @@
             <mat-dialog-actions class="login-dialog-buttons">
         
             <div class="right-login-dialog-buttons">
-                <button class="login-button" mat-raised-button type="submit">Se connecter</button>
+                <button class="login-button" mat-raised-button type="submit" mat-dialog-close>Se connecter</button>
                 <button mat-raised-button mat-dialog-close>Close</button>
             </div>
             <button mat-button class="forget-password">Mot de passe oublié?</button>

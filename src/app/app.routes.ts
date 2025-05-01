@@ -5,6 +5,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 import { OrdersListComponent } from './components/orders-list/orders-list.component';
 import { ProductCreatorComponent } from './components/product-creator/product-creator.component';
+import { UserAccountComponent } from './components/user-account/user-account.component';
 
 export const routes: Routes = [
     { path: '' , component: LandingPageComponent},
@@ -12,6 +13,7 @@ export const routes: Routes = [
     { path: 'cart', component: CartComponent},
     { path: 'order', component: OrderConfirmationComponent},
     { path: 'orderslist', component: OrdersListComponent},
-    { path: 'product-creator', component: ProductCreatorComponent}
+    { path: 'product-creator', component: ProductCreatorComponent},
+    { path: 'account', component: UserAccountComponent}
 ];
     

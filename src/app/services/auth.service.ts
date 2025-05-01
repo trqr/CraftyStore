@@ -30,7 +30,7 @@ export class AuthService {
         return localStorage.getItem('token');
     }
 
-    isAuthenticated(): boolean {
+    isAuthentificated(): boolean {
         if (this.getJwtToken()){
             return true;
         }

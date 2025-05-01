@@ -2,10 +2,11 @@ import { Injectable, inject } from "@angular/core";
 import { CartService } from "./cart.service";
 import { Order } from "../models/order.model";
 import { ToastrService } from "ngx-toastr";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs/internal/Observable";
 import { of, tap } from "rxjs";
 import { Customer } from "../models/customer.model";
+import { AuthService } from "./auth.service";
 
 
 @Injectable({
@@ -13,7 +14,11 @@ import { Customer } from "../models/customer.model";
 })
 
 export class OrdersService {
-    constructor(private CartServive: CartService, private toastrService: ToastrService, private http: HttpClient){}
+    constructor(private CartServive: CartService, 
+      private toastrService: ToastrService, 
+      private http: HttpClient,
+      private authService: AuthService
+    ){}
 
     private orders: Order[] = [];
 
@@ -48,5 +53,13 @@ export class OrdersService {
         this.toastrService.error(`Erreur lors de l'ajout de la commande`, 'Echec');
       });
     }
+
+    getUserOrders(): Observable<Order[]> {
+      const token = this.authService.getJwtToken();
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+      return this.http.get<Order[]>('http://localhost:8080/userorders', { headers }).pipe(tap((data: Order[])=> {
+      this.orders = data;
+     }));}
 
 }

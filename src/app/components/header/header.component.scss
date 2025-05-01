@@ -4,9 +4,6 @@ header {
     align-items: center;
     text-align: center;
     background-color: #dde4dc;
-    border-bottom: 1.5px solid #333;
-    border-right: 1.5px solid #333;
-    border-left: 1.5px solid #333;
     border-radius: 0px 0px 10px 10px;
     margin-top: 0px;
     margin-bottom: 30px;
@@ -78,9 +75,8 @@ a {
 
   .cart-logo {
     width: 33%;
-    text-align: right;
-    display: inline-flex;
-    justify-content: flex-end;
+    display: flex;
+    justify-content: end;
     align-items: center;
   }
 
@@ -89,3 +85,4 @@ nav {
   font-size: large;
   font-weight: 600;
 }
+

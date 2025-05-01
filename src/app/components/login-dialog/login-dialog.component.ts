@@ -20,13 +20,13 @@ export class LoginDialogComponent {
     private _formBuilder = inject(FormBuilder);
   
     loginForm = this._formBuilder.group({
-      userName: ['', Validators.required],
+      userEmail: ['', [Validators.required, Validators.email]],
       userPassword: ['', Validators.required]
     });
   
   getUserData() {
     return {
-      userName: this.loginForm.get('userName')?.value || '',
+      userEmail: this.loginForm.get('userEmail')?.value || '',
       userPassword: this.loginForm.get('userPassword')?.value || '',
     };
   }

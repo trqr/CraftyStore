@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject, PLATFORM_ID } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import {MatButtonModule} from '@angular/material/button';
@@ -14,6 +14,11 @@ import {
 } from '@angular/material/dialog';
 import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 import { RegistrationDialogComponent } from '../registration-dialog/registration-dialog.component';
+import { AuthService } from '../../services/auth.service';
+import { isPlatformBrowser } from '@angular/common';
+import { LoginContainerComponent } from '../login-container/login-container.component';
+import { LogoutContainerComponent } from '../logout-container/logout-container.component';
+
 
 const CART_ICON =
   `
@@ -23,13 +28,18 @@ const CART_ICON =
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, MatIconModule, MatBadgeModule, MatButtonModule],
+  imports: [RouterLink, RouterLinkActive, MatIconModule, MatBadgeModule, MatButtonModule, LoginContainerComponent, LogoutContainerComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
 
-  constructor(private CartService: CartService, ) {const iconRegistry = inject(MatIconRegistry);
+  constructor(
+    private CartService: CartService,
+    private Authservice: AuthService,
+    @Inject(PLATFORM_ID) private platformId: Object 
+  ) 
+  {const iconRegistry = inject(MatIconRegistry);
     const sanitizer = inject(DomSanitizer);
 
     // Note that we provide the icon here as a string literal here due to a limitation in
@@ -60,4 +70,11 @@ export class HeaderComponent {
     return this.CartService.getCartQuantity();
   }
   
+  isAuthentificated(): boolean {
+    if (isPlatformBrowser(this.platformId)) {
+      return this.Authservice.isAuthentificated();
+    }
+    return false;
+  }
+
 }
