@@ -32,22 +32,7 @@ html {
     color:  black;
     margin-top: 0px;
 }
-@media (max-width: 768px) {
-    .product-container {
-        width: 100%;
-        height: auto;
-        margin: 10px 0;
-    }
 
-    .img-container {
-        width: 100%;
-        height: auto;
-    }
-
-    .button {
-        width: 100%;
-    }
-}
 
 
  body, html{
@@ -57,36 +42,42 @@ html {
 }
 
 body{
-    background-color: #dde4dc;
+    background-color: #f8f3e8;
 }
 
 .product-container {
-    background-color: #dde4dc;
+    background-color: #f8f3e8;
     border-radius: 15px;
-    display: inline-block;
-    justify-content: center;
-    grid-template-columns: repeat(8, 1fr);
-    height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 370px;
     width: 250px;
-    margin: 15px 5px;
+    margin: 15px 0px;
     padding: 5px 5px;
     vertical-align: top;
     img {
         border-radius: 7px;
         margin: 10px auto;
-        max-width: 90%;
+        max-width: 90%; 
         max-height: 90%;
         display: block;
     }
 }
 
+.product-container:hover {
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.2) ;
+    background-color: #f7f6e6;
+    transition: 0.3s;
+}
+
+
 .box {
-    background-color: #dde4dc;
+    background-color: #f8f3e8;
     border: 1.5px solid black;
     border-radius: 15px;
     display: block;
     justify-content: flex-end;
-    grid-template-columns: repeat(8, 1fr);
     height: auto;
     width: 100%;
     margin: 15px 5px;
@@ -100,11 +91,7 @@ body{
     padding: auto;
 }
 
-.product-container:hover {
-    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.2) ;
-    background-color: #dce4d7;
-    transition: 0.3s;
-}
+
 
 .button {
     height: 40px;
@@ -129,3 +116,21 @@ body{
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+@media (max-width: 768px) {
+    .product-container {
+        width: 100%;
+        height: auto;
+        margin: 10px 0;
+    }
+
+    .img-container {
+        width: 100%;
+        height: auto;
+    }
+
+    .button {
+        width: 100%;
+    }
+}
