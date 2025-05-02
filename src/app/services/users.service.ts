@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
 import { User } from "../models/user.model";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ToastrService } from "ngx-toastr";
+import { AuthService } from "./auth.service";
+import { Observable, tap } from "rxjs";
 
 
 @Injectable({
@@ -9,7 +11,11 @@ import { ToastrService } from "ngx-toastr";
 })
 export class UsersService {
     
-        constructor(private toastrService: ToastrService, private http: HttpClient){}
+        constructor(
+            private toastrService: ToastrService,
+            private http: HttpClient,
+            private authService: AuthService
+            ){}
     
         addUser(user: User){
             this.http.post('http://localhost:8080/submit-user-data', user, {responseType: 'text'})
@@ -23,5 +29,10 @@ export class UsersService {
         });
         }
 
+        getUserInfo(): Observable<User>{
+            const token = this.authService.getJwtToken();
+            const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
+            return this.http.get<User>('http://localhost:8080/get-user-info', { headers }).pipe(tap((data: User) => data))
+        }
 }

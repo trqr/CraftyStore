@@ -5,13 +5,15 @@
 
 :root {
     @include mat.table-overrides((
-      background-color: #dde4dc,
+      background-color: #f9faf7,
     ));
     @include mat.stepper-overrides((
     header-selected-state-icon-background-color: rgb(173, 173, 173),
     container-color: #dde4dc,
     header-edit-state-icon-background-color: #dbc0ac,
     header-icon-background-color: #dbc0ac,
+  ));
+  @include mat.tabs-overrides((
   ));
   }
 

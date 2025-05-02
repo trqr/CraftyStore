@@ -1,34 +1,49 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { OrdersService } from '../../services/orders.service';
 import { Order } from '../../models/order.model';
+import { DecimalPipe } from '@angular/common';
+import {MatTabsModule} from '@angular/material/tabs';
+import { HeaderComponent } from '../header/header.component';
+import { UsersService } from '../../services/users.service';
+import { User } from '../../models/user.model';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-user-account',
-  imports: [MatPaginatorModule, MatTableModule],
+  imports: [MatPaginatorModule, MatTableModule, DecimalPipe, MatTabsModule, HeaderComponent, MatButtonModule, MatButton, MatProgressBarModule],
   templateUrl: './user-account.component.html',
   styleUrl: './user-account.component.scss'
 })
 export class UserAccountComponent implements OnInit {
-  constructor(private orderService: OrdersService){}
+  constructor(private orderService: OrdersService, private usersService: UsersService){}
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource! : Order[];
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  userData! : User;
+  totalFidelityPoints : number = 0;
+  
 
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  // }
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
     this.orderService.getUserOrders().subscribe(orders => {
       this.dataSource = orders;
-      console.log(orders)
     });
+    this.usersService.getUserInfo().subscribe(userInfo => {
+      this.userData = userInfo;
+    })
   }
 
+  getTotalFidelityPoints(){
+    this.totalFidelityPoints = 0;
+    this.dataSource.map(order => this.totalFidelityPoints += order.price);
+    this.totalFidelityPoints *= 10;
+    return this.totalFidelityPoints;
+  } 
 }
 
 
