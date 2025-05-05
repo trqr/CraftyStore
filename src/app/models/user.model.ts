@@ -3,5 +3,6 @@ export interface User {
     userPassword: String;
     userEmail: String;
     userAddress: String;
+    userFidelityPoints?: String;
     userId?: number;
 }
